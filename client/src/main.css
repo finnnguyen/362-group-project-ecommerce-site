@@ -1,0 +1,20 @@
+@import url(
+    "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    --heading-font: "Playfair Display";
+    --body-font: "Source Sans 3"
+}
+
+h1 {
+    font-family: var(--heading-font);
+}
+
+p {
+    font-family: var(--heading-font);
+}
