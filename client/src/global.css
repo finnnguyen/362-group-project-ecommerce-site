@@ -1,5 +1,6 @@
 @import url(
-    "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+    "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+);
 
 body {
     margin: 0;
@@ -10,15 +11,17 @@ body {
 
 * {
     --heading-font: "Playfair Display";
-    --body-font: "Source Sans 3"
+    --body-font: "Raleway"
 }
 
 h1 {
     font-family: var(--heading-font);
+    margin: 0;
 }
 
 p {
-    font-family: var(--heading-font);
+    font-family: var(--body-font);
+    margin: 0;
 }
 
 .app {

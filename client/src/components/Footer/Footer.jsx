@@ -3,13 +3,13 @@ import "./Footer.css"
 
 export default function Footer() {
     return (
-        <nav className="footer">
+        <footer className="footer">
 
             <div className="main-content">
                 <div className="help-links">
                     <h1>Help</h1>
-                    <Link className="link" to="">Contact Us</Link>
-                    <Link className="link" to="">FAQ</Link>
+                    <Link className="link" to=""><p>Contact Us</p></Link>
+                    <Link className="link" to=""><p>FAQ</p></Link>
                 </div>
                 <div className="subscribe">
                     <h1>Subscribe</h1>
@@ -30,7 +30,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <p>Copyright 2025 - CPSC362 Group 17</p>
-        </nav>
+            <p className="copyright">Copyright 2025 - CPSC362 Group 17</p>
+        </footer>
     )
 }
