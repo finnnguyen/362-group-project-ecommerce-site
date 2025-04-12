@@ -3,7 +3,7 @@ import "./Footer.css"
 
 export default function Footer() {
     return (
-        <div className="footer">
+        <nav className="footer">
 
             <div className="main-content">
                 <div className="help-links">
@@ -31,6 +31,6 @@ export default function Footer() {
             </div>
 
             <p>Copyright 2025 - CPSC362 Group 17</p>
-        </div>
+        </nav>
     )
 }

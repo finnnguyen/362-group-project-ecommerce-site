@@ -29,6 +29,15 @@
 
 .dropdown-content {
     position: absolute;
+    background: white;
+    border-inline: 3px solid lightgray;
+    border-bottom: 3px solid lightgray;
+}
+.dropdown-content * {
+    padding: 5px 10px;
+}
+.dropdown-content *:hover {
+    background: lightgray;
 }
 
 .link {

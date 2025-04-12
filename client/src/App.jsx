@@ -1,14 +1,17 @@
 import Home from "./pages/Home/Home";
-import Product from "./pages/Product/Product";
 import Products from "./pages/Products/Products";
+import Product from "./pages/Product/Product"
 import Navbar from "./components/navBar/navBar";
-import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer";
+import NotFound from "./components/NotFound/NotFound";
+import "./global.css";
 
 import {
   createBrowserRouter,
   RouterProvider,
   Outlet
 } from "react-router-dom"
+import SubcategoryProducts from "./components/SubcategoryProducts/SubcategoryProducts";
 
 const Layout = () => {
   return (
@@ -22,21 +25,35 @@ const Layout = () => {
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element:<Layout/>,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Home/>
       },
       {
-        path: "/products/:id",
+        path: ":category",
         element: <Products/>
       },
       {
-        path: "/product/:id",
+        path: ":category/:subcategory",
+        element: <SubcategoryProducts/>
+      },
+      {
+        path: ":category/:subcategory/:id",
         element: <Product/>
       },
+
+      // page not found or invalid product
+      {
+        path: "*",              
+        element: <NotFound/>
+      },
+      {
+        path: "notfound",
+        element: <NotFound/>
+      }
     ],
   },
 ])

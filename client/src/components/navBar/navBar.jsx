@@ -25,18 +25,18 @@ export default function navBar() {
                     onMouseEnter={() => setShowTies(true) }
                     onMouseLeave={() => setShowTies(false)}
                 >
-                    <Link className="link" to="/">Ties</Link>
+                    <Link className="link" to="/neckties">Ties</Link>
 
                     {showTies &&
                         <div className="dropdown-content">
                             <div className="classic-neckties">
-                                <Link className="link" to="/">Classic Neckties</Link>
+                                <Link className="link" to="/neckties/classic">Classic Neckties</Link>
                             </div>
                             <div className="skinny-neckties">
-                                <Link className="link" to="/">Skinny Neckties</Link>
+                                <Link className="link" to="/neckties/skinny">Skinny Neckties</Link>
                             </div>
                             <div className="clip-on-ties">
-                                <Link className="link" to="/">Clip-on ties</Link>
+                                <Link className="link" to="/neckties/clip-on">Clip-on ties</Link>
                             </div>
                         </div>
                     }
@@ -46,15 +46,15 @@ export default function navBar() {
                     onMouseEnter={() => setShowBowties(true) }
                     onMouseLeave={() => setShowBowties(false)}
                 >
-                    <Link className="link" to="/">Bowties</Link>
+                    <Link className="link" to="/bowties">Bowties</Link>
 
                     {showBowties &&
                         <div className="dropdown-content">
                             <div className="pre-tied-bowties">
-                                <Link className="link" to="/">Pre-tied bowties</Link>
+                                <Link className="link" to="/bowties/pre-tied">Pre-tied bowties</Link>
                             </div>
                             <div className="self-tie-bowties">
-                                <Link className="link" to="/">Self-tie bowties</Link>
+                                <Link className="link" to="/bowties/self-tie">Self-tie bowties</Link>
                             </div>
                         </div>
                     }
@@ -64,18 +64,18 @@ export default function navBar() {
                     onMouseEnter={() => setShowAccessories(true) }
                     onMouseLeave={() => setShowAccessories(false)}
                 >
-                    <Link className="link" to="/">Accessories</Link>
+                    <Link className="link" to="/accessories">Accessories</Link>
 
                     {showAccessories &&
                         <div className="dropdown-content">
                             <div className="tie-clips">
-                                <Link className="link" to="/">Tie Clips</Link>
+                                <Link className="link" to="/accessories/tie-clips">Tie Clips</Link>
                             </div>
                             <div className="scarves">
-                                <Link className="link" to="/">Scarves</Link>
+                                <Link className="link" to="/accessories/scarves">Scarves</Link>
                             </div>
                             <div className="tie-care">
-                                <Link className="link" to="/">Tie Care</Link>
+                                <Link className="link" to="/accessories/tie-care">Tie Care</Link>
                             </div>
                         </div>
                     }
