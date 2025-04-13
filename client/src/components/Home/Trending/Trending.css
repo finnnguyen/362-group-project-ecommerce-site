@@ -1,0 +1,47 @@
+.trending {
+    padding-block: 100px 35px;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+.trending > h1 {
+    margin-bottom: 10px;
+}
+
+.trending .content {
+    display: flex;
+    position: relative;
+    padding-inline: 50px;
+}
+.content .arrow {
+    position: absolute;
+    background: lightgray;
+    padding: 5px;
+    top: 45%;
+    z-index: 100;
+    cursor: pointer;
+}
+.content .arrow:hover {
+    background: rgb(188, 188, 188);
+}
+
+.content .arrow.prev {
+    left: -30px;
+}
+.content .arrow.next {
+    right: -30px;
+}
+
+.content .trending-product-list {
+    display: flex;
+    gap: 40px;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    margin-block: 40px;
+}
+.content .trending-product-list .product-card {
+    background: rgb(175, 175, 175);
+    border-radius: 10px;
+    min-width: clamp(150px, 200px, 250px);
+    height: 300px;
+}

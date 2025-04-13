@@ -1,0 +1,127 @@
+
+.hero {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    overflow-y: hidden;
+    /* border-bottom: 10px solid rgb(56, 56, 56); */
+}
+
+.carousel {
+    width: 100%;
+    margin: auto;    
+}
+.carousel .content {
+    display: flex;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    max-height: 530px;
+}
+.carousel .content .image {
+    min-width: 100%;
+}
+.carousel .content .image p {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-right: 5px;
+    font-size: 0.5rem;
+    text-align: right;
+    color: black;
+    pointer-events: none;
+    user-select: none;
+}
+img {
+    max-width: 100%;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel button {
+    display: flex;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    height: 50px;
+    transition: background-color 0.2s ease-in-out;
+}
+.carousel button:hover {
+    background: rgba(0,0,0,0.6)
+}
+.carousel .prev {
+    left: 10px;
+}
+.carousel .next {
+    right: 10px;
+}
+
+/* .tie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+}
+.tie-body {
+    background: rgb(27, 27, 27);
+    width: 300px;
+    height: 50px;
+}
+.tie-stripe {
+    background: white;
+    width: 300px;
+    height: 40px;
+    position: relative;
+}
+.tie-stripe::after {
+    content: '';
+    top: 8px;
+    position: absolute;
+    background: gray;
+    width: 300px;
+    height: 25px;
+}
+.tie-end {
+    background: transparent;
+    border-inline: 150px solid transparent;
+    border-top: 100px solid rgb(27, 27, 27);
+}
+
+.collar > * {
+    position: absolute;
+    z-index: 10;
+    background: transparent;
+    border-top: 120px solid lightgray;
+}
+.collar-left {
+    border-left: 400px solid transparent;
+    border-right: 200px solid transparent;
+}
+.collar-right {
+    border-left: 200px solid transparent;
+    border-right: 400px solid transparent;
+    right: 0;
+} */
+
+
+@media screen and (min-width: 960px) {
+
+}
+
+@media screen and (min-width: 1400px) {
+    .hero {
+        height: 800px;
+    }
+    .carousel .content {
+        max-height: 800px;
+    }
+}

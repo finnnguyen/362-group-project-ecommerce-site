@@ -1,9 +1,11 @@
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
 import Product from "./pages/Product/Product"
-import Navbar from "./components/navBar/navBar";
+import SubcategoryProducts from "./pages/SubcategoryProducts/SubcategoryProducts";
+import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./components/NotFound/NotFound";
+import About from "./pages/About/About";
 import "./global.css";
 
 import {
@@ -11,12 +13,11 @@ import {
   RouterProvider,
   Outlet
 } from "react-router-dom"
-import SubcategoryProducts from "./components/SubcategoryProducts/SubcategoryProducts";
 
 const Layout = () => {
   return (
     <div className="app">
-      <Navbar/>
+      <NavBar/>
       <Outlet/>
       <Footer/>
     </div>
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
       {
         path: ":category/:subcategory/:id",
         element: <Product/>
+      },
+
+      {
+        path: "about",
+        element: <About/>
       },
 
       // page not found or invalid product

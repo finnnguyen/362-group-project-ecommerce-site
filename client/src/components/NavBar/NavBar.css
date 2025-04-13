@@ -1,0 +1,142 @@
+.desktop-nav {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    border-top: 20px solid rgb(56, 56, 56);
+}
+
+.desktop-nav .category {
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+    padding-inline: 50px;
+    position: relative;
+}
+.desktop-nav .category.products {
+    gap: 30px;
+    font-size: 0.8rem;
+    flex: 1;
+}
+.category.title {
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.desktop-nav .category.other {
+    gap: 10px;
+    justify-content: right;
+    flex: 1;
+}
+
+.desktop-nav .category .arrow {
+    vertical-align: middle;
+}
+
+.desktop-nav .dropdown-content {
+    position: absolute;
+    background: white;
+    border-inline: 3px solid lightgray;
+    border-bottom: 3px solid lightgray;
+}
+.desktop-nav .dropdown-content * {
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+.desktop-nav .dropdown-content *:hover {
+    background: lightgray;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+    font-family: var(--body-font);
+}
+
+
+
+/* Mobile links */
+.mobile-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+}
+.mobile-nav * {
+    vertical-align: middle;
+}
+.mobile-nav .links {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+}
+.mobile-nav .menu-button {
+    margin-right: 10px;
+    position: relative;
+}
+.mobile-nav .menu-button:hover {
+    cursor: pointer;
+}
+.mobile-nav .mobile-products {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    position: absolute;
+    background: white;
+    width: 200px;
+    z-index: 10;
+    padding: 20px;
+
+    animation: open 0.15s ease;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+}
+.mobile-nav *[class="link"]:hover {
+    background: lightgray;
+}
+.subcategory {
+    margin-left: 20px;
+}
+
+@keyframes open {
+    0% {
+        right: -500px;
+    }
+    100% {
+        right: -10px;
+    }
+}
+@keyframes close {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: -180px;
+        display: none;
+    }
+}
+
+
+
+/* Tablet screens */
+@media screen and (min-width: 620px) {
+
+}
+
+/* Small laptops */
+@media screen and (min-width: 960px) {
+    .desktop-nav {
+        display: flex;
+    }
+    .mobile-nav {
+        display: none;
+    }
+}
+
+/* Medium laptops */
+@media screen and (min-width: 1200px) {
+    .desktop-nav .category.products {
+        font-size: 1.2rem;
+    }
+}
