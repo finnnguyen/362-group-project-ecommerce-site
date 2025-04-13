@@ -2,6 +2,7 @@
 .footer {
     background: lightgray;
     text-align: center;
+    padding-block: 10px;
 }
 
 .footer .main-content {
