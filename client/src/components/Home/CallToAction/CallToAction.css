@@ -3,11 +3,17 @@
     margin-block: 50px;
     height: 400px;
     overflow: hidden;
-    background: url("../../../public/man-fixing-blazer.webp") no-repeat;
-    background-size: 100%;
+    background: black;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     border-block: 5px solid rgb(61, 61, 61);
     position: relative;
 }
+.call-to-action.loaded {
+    background-image: url("../../../public/man-fixing-blazer.webp");
+}
+
 .call-to-action .content {
     position: absolute;
     right: 50px;

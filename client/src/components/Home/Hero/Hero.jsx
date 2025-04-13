@@ -2,45 +2,50 @@ import "./Hero.css";
 import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 
-import image1 from "../../../public/carousel/man-striped-tie.webp";
-import image2 from "../../../public/carousel/man-smoking-red-tie.webp";
+import carouselImg1 from "../../../public/carousel/man-striped-tie.webp";
+import carouselImg2 from "../../../public/carousel/man-smoking-red-tie.webp";
 import { useEffect, useRef, useState } from "react";
 
 export default function Hero() {
 
-    const contentRef = useRef(null)
+    const contentRef = useRef(null);
 
-    const [parent, setParent] = useState(null);
     const [imgCount, setImgCount] = useState(0);
     const [selectedImg, setSelectedImg] = useState(1);
 
     useEffect(() => {
         setImgCount(contentRef.current.querySelectorAll(".image").length);
-        setParent(contentRef.current);
     }, []);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            next();
+        }, 10000);
+
+        return () => clearInterval(interval);
+    }, [selectedImg, imgCount]);
+
     function next() {  
-        if (!parent) return;
-        setSelectedImg(prev => {
-            const newImg = prev >= imgCount ? 1 : prev+1;
-            parent.scrollLeft = (newImg-1) * parent.offsetWidth;
-            return newImg;
-        });
+        if (selectedImg+1 > imgCount) {
+            contentRef.current.scrollLeft = 0;
+            setSelectedImg(1);
+        }
+        else {
+            contentRef.current.scrollLeft += contentRef.current.offsetWidth;
+            setSelectedImg(selectedImg+1)
+        }
     }
     
     function prev() {
-        if (!parent) return;
-        setSelectedImg(prev => {
-            console.log(prev)
-            const newImg = prev <= 1 ? imgCount : prev-1;
-            parent.scrollLeft = (newImg-1) * parent.offsetWidth;
-            return newImg;
-        });
+        if (selectedImg-1 < 1) {
+            contentRef.current.scrollLeft = imgCount*contentRef.current.offsetWidth;
+            setSelectedImg(imgCount);
+        }
+        else {
+            contentRef.current.scrollLeft -= contentRef.current.offsetWidth;
+            setSelectedImg(selectedImg-1);
+        }
     }
-
-    setInterval(() => {
-        next();
-    }, 10000);
 
     return (
         <>
@@ -59,12 +64,12 @@ export default function Hero() {
 
                     <div className="image">
                         <p>Photo by Maxim Mushnikov on Unsplash</p>
-                        <img src={image1} alt="Man standing with striped black, red, and white tie" />
+                        <img src={carouselImg1} alt="Man standing with striped black, red, and white tie" />
                     </div>
 
                     <div className="image">
                         <p>Photo by Enrique Bancalari on Unsplash</p>
-                        <img src={image2} alt="Man with red tie sitting and smoking" />
+                        <img src={carouselImg2} alt="Man with red tie sitting and smoking" />
                     </div>
                     
                 </div>
