@@ -23,8 +23,7 @@
     color: white;
     width: 300px;
 }
-.call-to-action .content a {
-    text-decoration: none;
+.call-to-action .content .link {
     color: rgb(45, 45, 45);
     background: rgb(209, 199, 185);
     padding: 10px 25px;
