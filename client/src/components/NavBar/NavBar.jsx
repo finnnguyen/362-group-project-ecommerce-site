@@ -9,12 +9,17 @@ import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import "./NavBar.css";
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
+import { allowedCategories } from '../../stores/allowedCategories';
 
 export default function NavBar() {
 
     const [showTies, setShowTies] = useState(false);
     const [showBowties, setShowBowties] = useState(false);
     const [showAccessories, setShowAccessories] = useState(false);
+    const [toggleDropdown, setToggleDropdown] = useState(() => {
+        return Object.fromEntries(allowedCategories.map((cat) => [cat[0], false] ));
+    })
+
     const [mobileNav, setMobileNav] = useState(false);
     const [mobileAnimation, setMobileAnimation] = useState("close");
 
@@ -30,6 +35,22 @@ export default function NavBar() {
         
     }
 
+    function toggleCategory(category) {
+        setToggleDropdown(prev => ({
+            ...prev,
+            [category]: !prev[category]
+        }));
+    }
+
+    let id = 0;
+    const navigationLinks = allowedCategories.map(cat => {
+        return {
+            id: id++,
+            category: cat[0],
+            subcategories: cat[1]
+        };
+    });
+
     return ( 
         <nav className="navbar">
 
@@ -37,60 +58,38 @@ export default function NavBar() {
             <div className="desktop-nav">
 
                 <div className="category products">
-                    <div className="ties"
-                        onMouseEnter={() => setShowTies(true) }
-                        onMouseLeave={() => setShowTies(false)}
-                    >
-                        <Link className="link" to="/neckties">Ties <KeyboardArrowDownIcon className="arrow"/> </Link>
-                        {showTies &&
-                            <div className="dropdown-content">
-                                <div className="classic-neckties">
-                                    <Link className="link" to="/neckties/classic">Classic Neckties</Link>
+
+                    {
+                        navigationLinks.map(link => {
+                            return (
+                                <div key={link.id} className={link.category} 
+                                    onMouseEnter={() => toggleCategory(link.category)}
+                                    onMouseLeave={() => toggleCategory(link.category)}
+                                >
+                                    <Link className="link" to={link.category}> 
+                                        {link.category[0].toUpperCase() + link.category.slice(1)}
+                                        <KeyboardArrowDownIcon className="arrow"/>
+                                    </Link>
+
+                                    {toggleDropdown[link.category] &&
+                                        <div className="dropdown-content">
+                                            {   
+                                                link.subcategories.map(subcat => 
+                                                    <div key={link.id + "-" + subcat} className={`subcategory ${link.category + "-" + subcat}`}>
+                                                        <Link className="link" to={link.category + "/" + subcat}>
+                                                            {
+                                                                subcat[0].toUpperCase() + subcat.slice(1)
+                                                            }
+                                                        </Link>
+                                                    </div>
+                                                )
+                                            }
+                                        </div>
+                                    }
                                 </div>
-                                <div className="skinny-neckties">
-                                    <Link className="link" to="/neckties/skinny">Skinny Neckties</Link>
-                                </div>
-                                <div className="clip-on-ties">
-                                    <Link className="link" to="/neckties/clip-on">Clip-on ties</Link>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <div className="bowties"
-                        onMouseEnter={() => setShowBowties(true) }
-                        onMouseLeave={() => setShowBowties(false)}
-                    >
-                        <Link className="link" to="/bowties">Bowties <KeyboardArrowDownIcon className="arrow"/> </Link>
-                        {showBowties &&
-                            <div className="dropdown-content">
-                                <div className="pre-tied-bowties">
-                                    <Link className="link" to="/bowties/pre-tied">Pre-tied bowties</Link>
-                                </div>
-                                <div className="self-tie-bowties">
-                                    <Link className="link" to="/bowties/self-tie">Self-tie bowties</Link>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                    <div className="accessories"
-                        onMouseEnter={() => setShowAccessories(true) }
-                        onMouseLeave={() => setShowAccessories(false)}
-                    >
-                        <Link className="link" to="/accessories">Accessories <KeyboardArrowDownIcon className="arrow"/> </Link>
-                        {showAccessories &&
-                            <div className="dropdown-content">
-                                <div className="tie-clips">
-                                    <Link className="link" to="/accessories/tie-clips">Tie Clips</Link>
-                                </div>
-                                <div className="scarves">
-                                    <Link className="link" to="/accessories/scarves">Scarves</Link>
-                                </div>
-                                <div className="tie-care">
-                                    <Link className="link" to="/accessories/tie-care">Tie Care</Link>
-                                </div>
-                            </div>
-                        }
-                    </div>
+                            )
+                        })
+                    }
                 </div>
 
                 <div className="category title">

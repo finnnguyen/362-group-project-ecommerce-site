@@ -1,12 +1,9 @@
 import { useParams, Navigate } from "react-router-dom";
-import { allowedCategories, allowedSubcategories } from "../../stores/allowedCategories";
+import { isValidProduct } from "../../stores/allowedCategories";
 
 export default function SubcategoryProducts() {
     const {category, subcategory} = useParams();
-
-    if (!allowedCategories.includes(category) || !allowedSubcategories.includes(subcategory)) {
-        return <Navigate to="/notfound" />
-    }
+    if (!isValidProduct(category, subcategory)) return <Navigate to="/notfound" />;
     
     return (
         <div>

@@ -95,7 +95,7 @@
 .mobile-nav *[class="link"]:hover {
     background: lightgray;
 }
-.subcategory {
+.mobile-nav .subcategory {
     margin-left: 20px;
 }
 
