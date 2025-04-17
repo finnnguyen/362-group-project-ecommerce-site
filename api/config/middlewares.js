@@ -9,4 +9,15 @@ module.exports = [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
+
+  {
+    settings: {
+      cors: {
+        origin: ['localhost:5173, https://tiedandtrue.vercel.app'],
+        methods: ["*"],
+        headers: "*",
+        credentials: true
+      }
+    }
+  }
 ];
