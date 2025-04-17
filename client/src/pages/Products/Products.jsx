@@ -126,10 +126,11 @@ export default function Products() {
                         <div className="product-list">
                         {
                             products?.map(product => {
+                                console.log(product.img.url)
                                 return (
                                     <div key={product.id} className="product-card">
                                         <Link to={`../${category}/${product.id}`} className="link">
-                                            <img src={import.meta.env.VITE_UPLOAD_URL+product.img.url} alt="alt" />
+                                            <img src={product.img.url} alt="tie image" />
                                             <h1>{product.title}</h1>
                                             <p>${product.price}</p>
                                         </Link>
