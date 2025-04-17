@@ -20,6 +20,9 @@ Navigate into the client folder and run this command:\
 ```npm install```\
 (downloads required packages)
 
+Copy .env.example file and update with correct values\
+```cp .env.example .env```
+
 ### How to run:
 Run this command:\
 ```npm run dev```\
