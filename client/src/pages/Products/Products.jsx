@@ -126,7 +126,6 @@ export default function Products() {
                         <div className="product-list">
                         {
                             products?.map(product => {
-                                console.log(product.img.url)
                                 return (
                                     <div key={product.id} className="product-card">
                                         <Link to={`../${category}/${product.id}`} className="link">
