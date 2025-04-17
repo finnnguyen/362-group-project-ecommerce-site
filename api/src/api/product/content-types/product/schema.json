@@ -65,6 +65,26 @@
         "featured",
         "trending"
       ]
+    },
+    "color": {
+      "type": "enumeration",
+      "enum": [
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "purple",
+        "black",
+        "brown",
+        "gray",
+        "pink",
+        "silver",
+        "gold",
+        "white",
+        "turquoise",
+        "multicolored"
+      ]
     }
   }
 }

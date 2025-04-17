@@ -453,6 +453,25 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::category.category'
     >;
+    color: Schema.Attribute.Enumeration<
+      [
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'blue',
+        'purple',
+        'black',
+        'brown',
+        'gray',
+        'pink',
+        'silver',
+        'gold',
+        'white',
+        'turquoise',
+        'multicolored',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
