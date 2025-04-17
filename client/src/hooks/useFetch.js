@@ -3,9 +3,6 @@ import { makeRequest } from "../makeRequest";
 
 export const useFetch = (url) => {
 
-    console.log(url);
-    console.log(import.meta.env.VITE_API_URL);
-
     const [products, setProducts] = useState([]);
     const [filters, setFilters] = useState([]);
     const [loading, setLoading] = useState(false);
