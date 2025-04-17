@@ -1,7 +1,6 @@
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
 import Product from "./pages/Product/Product"
-import SubcategoryProducts from "./pages/SubcategoryProducts/SubcategoryProducts";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./components/NotFound/NotFound";
@@ -38,8 +37,8 @@ const router = createBrowserRouter([
         element: <Products/>
       },
       {
-        path: ":category/:subcategory",
-        element: <SubcategoryProducts/>
+        path: ":category/:id",
+        element: <Product />
       },
       {
         path: ":category/:subcategory/:id",

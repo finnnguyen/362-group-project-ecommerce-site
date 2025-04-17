@@ -1,6 +1,7 @@
 
 const styles = {
     textAlign: 'center',
+    marginBlock: "150px"
 }
 
 export default function NotFound() {

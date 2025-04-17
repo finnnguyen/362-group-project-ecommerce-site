@@ -5,6 +5,7 @@
     height: 80px;
     width: 100%;
     border-top: 20px solid rgb(56, 56, 56);
+    margin-bottom: 20px;
 }
 
 .desktop-nav .category {
@@ -26,7 +27,7 @@
 .desktop-nav .category.other {
     gap: 10px;
     justify-content: right;
-    flex: 1;
+    flex: 0.8;
 }
 
 .desktop-nav .category .arrow {

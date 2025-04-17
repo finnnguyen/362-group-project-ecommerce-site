@@ -1,46 +1,147 @@
-import { useParams, Navigate } from "react-router-dom"
+import { useParams, Navigate, useSearchParams, Link, useNavigate } from "react-router-dom"
 import { isValidProduct } from "../../stores/allowedCategories";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useFetch } from "../../hooks/useFetch";
+import { allowedCategories } from "../../stores/allowedCategories";
+import "./Products.css";
+import { useState, useEffect, useRef } from "react";
 
 export default function Products() {
+    const navigate = useNavigate();
+
     const { category } = useParams();
     if (!isValidProduct(category)) return <Navigate to="/notfound" />;
 
-    const [products, setProducts] = useState([]);
+    let [searchParams] = useSearchParams();
+    const selectedType = searchParams.get("type");
+    const selectedColor = searchParams.get("color");
+
+    const colors = [
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'blue',
+        'purple',
+        'black',
+        'brown',
+        'gray',
+        'pink',
+        'silver',
+        'gold',
+        'white',
+        'turquoise',
+        'multicolored',
+    ];
+    
+    const productQuery = `/products?filters[categories][title][$eq]=${category}`;
+    const typeFilter = `&filters[sub_categories][title][$eq]=${selectedType}`;
+    const colorFilter = `&filters[color]=${selectedColor}`;
+    const populateQuery = `&populate=*`;
+
+    if (productQuery) {
+        var {products, loading, error} = selectedType && selectedColor 
+            ? useFetch(productQuery + typeFilter + colorFilter + populateQuery)
+            : selectedType 
+            ? useFetch(productQuery + typeFilter + populateQuery)
+            : selectedColor
+            ? useFetch(productQuery + colorFilter + populateQuery)
+            : useFetch(productQuery + populateQuery);
+    }
+
+
+    const [placeholders, setPlaceholders] = useState(0);
+    const formRef = useRef(null);
 
     useEffect(() => {
+        const rows = Math.floor(window.innerHeight / 250);
+        const cols = Math.floor(window.innerWidth / 250);
+        const placeholderAmnt = rows * cols;
+        const placeholderArr = [];
+        for (let i = 0; i < placeholderAmnt; i++) {
+            placeholderArr.push(
+                <div key={i} className="placeholder-card">
+                    <div className="loader"></div>
+                </div>
+            );
+        }
+        setPlaceholders(placeholderArr);        
+    },[]);
 
-        setProducts([]);
-        const fetchData = async () => {
-            try {
-                const data = await axios.get(import.meta.env.VITE_API_URL + `/products?filters[categories][title][$eq]=${category}&populate=*`, {
-                    headers: {
-                        Authorization: "bearer " + import.meta.env.VITE_API_TOKEN,
-                    }
-                });
-                setProducts(data.data.data);
-            }
-            catch(err) {
-                console.error(err);
-            }
-        };
-        // fetchData();
-    }, [category]);
+    function clearFilters() {
+        const filters = formRef.current.querySelectorAll("fieldset p input");
+        filters.forEach(filter => {
+            filter.checked = false;
+        })
+        navigate("");
+    }
 
     return (
-        <div>
-            <p>Category: {category}</p>
-            {
-                products.map(product => {
-                    return (
-                        <div key={product.id}>
-                            <h1>{product.title}</h1>
-                            <p>{product.description}</p>
+        <div className="product-page">
+
+            <div className="product-sidebar">
+                <p>Filter by:</p>
+                <button onClick={clearFilters}><p>Clear all</p></button>
+                <form action="" method="GET" ref={formRef}>
+                    <fieldset id="product-type">
+                        <legend><p>Type</p></legend>
+                        {
+                            allowedCategories[category].map((subcat) =>
+                                <p key={subcat} id={subcat}>
+                                    <input type="radio" name="type" id={subcat} value={subcat} onChange={() => formRef.current.submit()} defaultChecked={subcat === selectedType} />
+                                    <label htmlFor={subcat}>{subcat[0].toUpperCase() + subcat.slice(1)}</label>
+                                </p>
+                            )
+                        }
+                    </fieldset>
+
+                    <fieldset id="product-color">
+                        <legend><p>Color</p></legend>
+                        {
+                            colors.map(color =>
+                                <p key={color} id={color}>
+                                    <input type="radio" name="color" id={color} value={color} onChange={() => formRef.current.submit()} defaultChecked={color === selectedColor}/>
+                                    <label htmlFor={color}>{color[0].toUpperCase() + color.slice(1)}</label>
+                                </p>
+                            )
+                        }
+                    </fieldset>
+                </form>
+            </div>
+
+            <div className="product-page-content">
+
+                <h1 className="header">{category[0].toUpperCase() + category.slice(1)}</h1>
+
+                {
+                    loading ?
+                    (
+                        <div className="placeholder-list">
+                            { placeholders?.map(placeholder => placeholder) }
                         </div>
                     )
-                })
-            }
+                    : error ? <p>{error}</p>
+                    :
+                    <div>
+                        <p className="results">{products.length} Results</p>
+                        <div className="product-list">
+                        {
+                            products?.map(product => {
+                                return (
+                                    <div key={product.id} className="product-card">
+                                        <Link to={`../${category}/${product.id}`} className="link">
+                                            <img src={import.meta.env.VITE_UPLOAD_URL+product.img.url} alt="alt" />
+                                            <h1>{product.title}</h1>
+                                            <p>${product.price}</p>
+                                        </Link>
+                                    </div>
+                                )
+                            })
+                        }
+                        </div>
+                    </div>
+                }
+            </div>
+
         </div>
     )
 }

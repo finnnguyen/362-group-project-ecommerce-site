@@ -8,16 +8,15 @@ import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 
 import "./NavBar.css";
 import { Link } from 'react-router-dom';
-import { useEffect, useState, useRef } from 'react';
+import { useState } from 'react';
 import { allowedCategories } from '../../stores/allowedCategories';
 
 export default function NavBar() {
 
-    const [showTies, setShowTies] = useState(false);
-    const [showBowties, setShowBowties] = useState(false);
-    const [showAccessories, setShowAccessories] = useState(false);
     const [toggleDropdown, setToggleDropdown] = useState(() => {
-        return Object.fromEntries(allowedCategories.map((cat) => [cat[0], false] ));
+        return Object.keys(allowedCategories).map((cat) => {
+            return [cat, false];
+        });
     })
 
     const [mobileNav, setMobileNav] = useState(false);
@@ -43,11 +42,11 @@ export default function NavBar() {
     }
 
     let id = 0;
-    const navigationLinks = allowedCategories.map(cat => {
+    const navigationLinks = Object.keys(allowedCategories).map(cat => {
         return {
             id: id++,
-            category: cat[0],
-            subcategories: cat[1]
+            category: cat,
+            subcategories: allowedCategories[cat]
         };
     });
 
@@ -76,7 +75,7 @@ export default function NavBar() {
                                             {   
                                                 link.subcategories.map(subcat => 
                                                     <div key={link.id + "-" + subcat} className={`subcategory ${link.category + "-" + subcat}`}>
-                                                        <Link className="link" to={link.category + "/" + subcat}>
+                                                        <Link className="link" to={link.category + "?type=" + subcat}>
                                                             {
                                                                 subcat[0].toUpperCase() + subcat.slice(1)
                                                             }

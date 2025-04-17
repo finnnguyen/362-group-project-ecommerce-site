@@ -4,6 +4,7 @@
     width: 90%;
     margin: auto;
 }
+
 .trending > h1 {
     margin-bottom: 10px;
 }
@@ -44,4 +45,7 @@
     border-radius: 10px;
     min-width: clamp(150px, 200px, 250px);
     height: 300px;
+}
+.trending-product-list::-webkit-scrollbar {
+    display: none;
 }
