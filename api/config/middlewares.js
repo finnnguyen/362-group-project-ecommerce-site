@@ -6,7 +6,7 @@ module.exports = [
     config: {
       origin: ['http://localhost:5173', 'https://tiedandtrue.vercel.app'],
       methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-      headers: "*",
+      headers: ["Content-Type", "Authorization"],
       credentials: true
     }
   },

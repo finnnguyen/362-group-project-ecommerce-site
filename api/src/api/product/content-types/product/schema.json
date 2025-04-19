@@ -85,6 +85,15 @@
         "turquoise",
         "multicolored"
       ]
+    },
+    "ratings": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::rating.rating",
+      "mappedBy": "products"
+    },
+    "stock": {
+      "type": "integer"
     }
   }
 }
