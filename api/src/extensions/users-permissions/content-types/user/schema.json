@@ -65,8 +65,8 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "sessionId": {
-      "type": "uid"
+    "name": {
+      "type": "string"
     }
   }
 }
