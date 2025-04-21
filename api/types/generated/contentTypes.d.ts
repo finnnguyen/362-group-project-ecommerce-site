@@ -488,7 +488,14 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     ratings: Schema.Attribute.Relation<'manyToMany', 'api::rating.rating'>;
-    stock: Schema.Attribute.Integer;
+    stock: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     sub_categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::sub-category.sub-category'

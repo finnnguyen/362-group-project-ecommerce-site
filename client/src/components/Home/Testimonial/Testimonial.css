@@ -5,6 +5,8 @@
     align-items: center;
     text-align: center;
     padding-inline: 20px;
+    max-width: 1000px;
+    margin: auto;
 }
 
 .testimonial .review {

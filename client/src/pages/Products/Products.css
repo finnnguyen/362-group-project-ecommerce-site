@@ -49,15 +49,14 @@
 .product-page .product-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(60px, 80px));
-    grid-template-rows: repeat(auto-fit, 190px);
     row-gap: 20px;
     column-gap: 20px;
 }
-
 .product-card img {
     border-radius: 8px;
-    max-height: 100%;
+    height: 120px
 }
+
 .product-card h1 {
     font-size: 0.8rem;
     width: 70%;
@@ -119,8 +118,11 @@
     }
     .product-page .product-list {
         grid-template-columns: repeat(auto-fit, minmax(100px, 120px));
-        row-gap: 100px;
+        row-gap: 50px;
     } 
+    .product-card img {
+        height: 200px;
+    }
     .product-card h1 {
         font-size: 1.2rem;
     }
@@ -131,10 +133,18 @@
     }
     .product-page .product-list {
         grid-template-columns: repeat(auto-fit, minmax(120px, 200px));
-        grid-template-rows: repeat(auto-fit, 300px);
-
     }   
+    .product-card img {
+        height: 300px;
+    }
     .product-card h1 {
         font-size: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .product-card img {
+        width: 350px;
+        height: 300px;
     }
 }

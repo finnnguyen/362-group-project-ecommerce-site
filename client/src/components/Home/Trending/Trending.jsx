@@ -2,8 +2,15 @@ import "./Trending.css";
 import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
 import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import { useRef, useState } from "react";
+import { useFetch } from "../../../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 export default function Trending() {
+
+    const query = `/products?filters[type][$eq]=featured&sort[0]=publishedAt:desc&pagination[pageSize]=10&populate=*`;
+    if (query) {
+        var {products, loading, error} = useFetch(query);
+    }
 
     const listRef = useRef(null);
 
@@ -25,22 +32,16 @@ export default function Trending() {
                 </div>
 
                 <div className="trending-product-list" ref={listRef}>
-                    {/* Test products, update with db values */}
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
-                    <div className="product-card"></div>
+                    {
+                        products.map(product =>
+                            <Link to={`${product.categories[0]?.title}/${product?.documentId}`} key={product.id} className="link product-card">
+                                <div className="img">
+                                    <img src={product?.img?.url} alt={product?.img?.title} />
+                                </div>
+                                <p>{product?.title}</p>
+                            </Link>
+                        )
+                    }
                 </div>
 
                 <div className="arrow next" onClick={next}>

@@ -48,7 +48,6 @@ export default function Products() {
             : useFetch(productQuery + populateQuery);
     }
 
-
     const [placeholders, setPlaceholders] = useState(0);
     const formRef = useRef(null);
 
@@ -126,13 +125,19 @@ export default function Products() {
                         <div className="product-list">
                         {
                             products?.map(product => {
+
+                                // Use unique documentId since strapi ids are inconsistent
+                                const productPath = product.sub_categories[0]
+                                    ? `../${category}/${product.sub_categories[0].title}/${product.documentId}`
+                                    : `../${category}/${product.documentId}`;
+
                                 return (
                                     <div key={product.id} className="product-card">
-                                        <Link to={`../${category}/${product.id}`} className="link">
-                                            <img src={product.img.url} alt="tie image" />
-                                            <h1>{product.title}</h1>
-                                            <p>${product.price}</p>
+                                        <Link to={productPath} className="link">
+                                            <img src={product.img.url} alt={product?.img?.name} />
                                         </Link>
+                                        <h1>{product.title}</h1>
+                                        <p>${product.price}</p>
                                     </div>
                                 )
                             })

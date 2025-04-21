@@ -130,47 +130,29 @@ export default function NavBar() {
                         <MenuOutlinedIcon sx={{ width: 30, height: 30 }}/>
 
                         {mobileNav &&
-                        <div className="mobile-products" 
-                            style={{
-                                animationName: mobileAnimation
-                            }}
-                        >
-                            <div className="ties">
-                                <Link className="link" to="/neckties"><h1>Ties <ChevronRightOutlinedIcon/> </h1> </Link>
-                                <div className="classic-neckties subcategory">
-                                    <Link className="link" to="/neckties/classic">Classic Neckties</Link>
-                                </div>
-                                <div className="skinny-neckties subcategory">
-                                    <Link className="link" to="/neckties/skinny">Skinny Neckties</Link>
-                                </div>
-                                <div className="clip-on-ties subcategory">
-                                    <Link className="link" to="/neckties/clip-on">Clip-on ties</Link>
-                                </div>
-                            </div>
+                        <div className="mobile-products" style={{ animationName: mobileAnimation }}>
+                            {
+                            navigationLinks.map(link => {
+                                return (
+                                    <div key={link.id} className={link.category}>
+                                        <Link className="link" to={`/${link.category}`}>
+                                            <h1>
+                                                {link.category[0].toUpperCase() + link.category.slice(1)}
+                                                <ChevronRightOutlinedIcon/>
+                                            </h1>
+                                        </Link>
 
-                            <div className="bowties">
-                            <Link className="link" to="/bowties"><h1>Bowties <ChevronRightOutlinedIcon/> </h1> </Link>
-                                <div className="pre-tied-bowties subcategory">
-                                    <Link className="link" to="/bowties/pre-tied">Pre-tied bowties</Link>
-                                </div>
-                                <div className="self-tie-bowties subcategory">
-                                    <Link className="link" to="/bowties/self-tie">Self-tie bowties</Link>
-                                </div>
-                            </div>
-
-                            <div className="accessories">
-                                <Link className="link" to="/accessories"><h1>Accessories <ChevronRightOutlinedIcon/></h1> </Link>
-
-                                <div className="tie-clips subcategory">
-                                    <Link className="link" to="/accessories/tie-clips">Tie Clips</Link>
-                                </div>
-                                <div className="scarves subcategory">
-                                    <Link className="link" to="/accessories/scarves">Scarves</Link>
-                                </div>
-                                <div className="tie-care subcategory">
-                                    <Link className="link" to="/accessories/tie-care">Tie Care</Link>
-                                </div>
-                            </div>
+                                        {link.subcategories.map(subcat =>
+                                            <div key={subcat} className="subcategory">
+                                                <Link className="link" to={`/${link.category}?type=${subcat}`}>
+                                                    {subcat[0].toUpperCase() + subcat.slice(1)}
+                                                </Link>
+                                            </div>
+                                        )}
+                                    </div>
+                                )
+                            })
+                            }
                         </div>
                         }
                     </div>

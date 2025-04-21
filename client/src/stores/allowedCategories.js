@@ -9,8 +9,8 @@ export function isValidProduct(category, subcategory=null) {
 }
 
 export const allowedCategories = {
-    "neckties": ["classic", "skinny", "clip-on"], 
-    "bowties": ["pre-tied", "self-tie"], 
+    "neckties": ["classic", "skinny", "wide", "clip-on", "kids"], 
+    "bowties": ["pre-tied", "self-tie", "kids"], 
     "accessories": ["tie-clips", "scarves", "tie-care"]
 };
 

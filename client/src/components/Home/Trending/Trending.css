@@ -40,12 +40,50 @@
     scroll-behavior: smooth;
     margin-block: 40px;
 }
+
 .content .trending-product-list .product-card {
-    background: rgb(175, 175, 175);
     border-radius: 10px;
     min-width: clamp(150px, 200px, 250px);
     height: 300px;
+    text-align: left;
 }
+.product-card {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: hidden;
+    color: gray !important;
+}
+.product-card .img {
+    overflow: hidden;
+    height: 80%;
+}
+.product-card .img img {
+    width: 100%;
+    height: 100%;
+}
+.content .trending-product-list .product-card p {
+    margin-left: 10px;
+    font-weight: bold;
+    bottom: 10px;
+}
+.product-card:hover {
+    color: black !important;
+}
+.product-card .img img:hover {
+    animation: zoomIn 0.1s ease-in-out forwards;
+}
+@keyframes zoomIn {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
 .trending-product-list::-webkit-scrollbar {
     display: none;
 }
