@@ -1,6 +1,9 @@
 module.exports = ({ env }) => {
   
     return {
+      'users-permissions': {
+        enabled: true,
+      },
       upload: {
         config: {
           provider: 'aws-s3',
