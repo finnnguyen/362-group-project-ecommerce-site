@@ -99,14 +99,14 @@ export default function NavBar() {
                     <div className="search">
                         <SearchOutlinedIcon/>
                     </div>
+                    <Link to="profile" className="link profile">
+                        <PersonOutlineIcon/>
+                    </Link>
                     <div className="favorite">
                         <FavoriteBorderIcon/>
                     </div>
                     <div className="cart">
                         <ShoppingCartOutlinedIcon/>
-                    </div>
-                    <div className="profile">
-                        <PersonOutlineIcon/>
                     </div>
                 </div>
             </div>
@@ -114,9 +114,9 @@ export default function NavBar() {
             {/*Mobile Navbar*/}
             <div className="mobile-nav">
                     <div className="links">
-                        <div className="profile">
+                        <Link to="profile" className="profile">
                             <PersonOutlineIcon/>
-                        </div>
+                        </Link>
                         <div className="search">
                             <SearchOutlinedIcon/>
                         </div>
