@@ -14,7 +14,7 @@ export default function Footer() {
                 <div className="subscribe">
                     <h1>Subscribe</h1>
                     <p>Get reminders about any new products and receive our daily newsletter</p>
-                    <form action="POST" onSubmit={(e) => e.preventDefault()}>
+                    <form className="footer-form" action="POST" onSubmit={(e) => e.preventDefault()}>
                         <input type="email" name="email" id="email" placeholder="Email Address"/>
                         <input type="submit" />
                     </form>

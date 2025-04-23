@@ -5,7 +5,14 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./components/NotFound/NotFound";
 import About from "./pages/About/About";
+import Login from "./pages/Login/Login";
+import Profile from "./pages/Profile/Profile";
+import Admin from "./pages/Admin/Admin";
+
+import Cookies from "js-cookie";
 import "./global.css";
+
+import { useEffect, useState } from "react";
 
 import {
   createBrowserRouter,
@@ -13,7 +20,9 @@ import {
   Outlet
 } from "react-router-dom"
 
+
 const Layout = () => {
+
   return (
     <div className="app">
       <NavBar/>
@@ -49,6 +58,18 @@ const router = createBrowserRouter([
         path: "about",
         element: <About/>
       },
+      {
+        path: "login",
+        element: <Login />
+      },
+      {
+        path: "profile",
+        element: <Profile/>
+      },
+      {
+        path: "profile/admin",
+        element: <Admin/>
+      },
 
       // page not found or invalid product
       {
@@ -64,6 +85,7 @@ const router = createBrowserRouter([
 ])
 
 function App() {
+
   return (
     <>
       <RouterProvider router={router} />

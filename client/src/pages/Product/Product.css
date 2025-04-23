@@ -21,31 +21,31 @@
     margin-block: 10px;
 }
 
-form select {
+.product-form select {
     width: 80%;
     padding-block: 5px;
     margin-block: 10px;
     font-size: 1.5rem;
     font-family: var(--body-font);
 }
-form .quantity {
+.product-form .quantity {
     display: flex;
     font-size: 1.5rem;
     margin-block: 20px;
     align-items: center;
     user-select: none;
 }
-form .quantity > * {
+.product-form .quantity > * {
     border: 0.5px solid gray;
     padding: 10px 15px;
 }
-form .quantity .change-quantity {
+.product-form .quantity .change-quantity {
     cursor: pointer;
 }
-form .quantity .change-quantity:hover {
+.product-form .quantity .change-quantity:hover {
     background: lightgray;
 }
-form button {
+.product-form button {
     width: 70%;
     padding-block: 15px;
     background: rgb(0, 0, 105);
@@ -55,7 +55,7 @@ form button {
     cursor: pointer;
     border-radius: 5px;
 }
-form button:hover {
+.product-form button:hover {
     opacity: 1;
 }
 

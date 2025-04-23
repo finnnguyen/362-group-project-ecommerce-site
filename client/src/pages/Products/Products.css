@@ -22,6 +22,9 @@
     border: 2px ridge gray white;
     font-size: 0.7rem;
 }
+.product-sidebar form fieldset p {
+    margin-block: 10px;
+}
 .product-sidebar button {
     border: none;
     margin-block: 5px 20px;

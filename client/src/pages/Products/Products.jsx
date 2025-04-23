@@ -134,7 +134,7 @@ export default function Products() {
                                 return (
                                     <div key={product.id} className="product-card">
                                         <Link to={productPath} className="link">
-                                            <img src={product.img.url} alt={product?.img?.name} />
+                                            <img src={product?.img?.url} alt={product?.img?.name} />
                                         </Link>
                                         <h1>{product.title}</h1>
                                         <p>${product.price}</p>

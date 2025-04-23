@@ -1,18 +1,43 @@
-module.exports = [
+module.exports = ({ env }) => [
   'strapi::logger',
   'strapi::errors',
   {
     name: 'strapi::cors',
     config: {
       enabled: true,
-      origin: ['http://127.0.0.1:5173', 'http://localhost:5173', 'https://tiedandtrue.vercel.app'],
-      methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+      origin: ['*'],
+      methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
       headers: ["Content-Type", "Authorization"],
       credentials: true,
       keepHeadersOnError: true,
     },
   },
-  'strapi::security',
+  {
+    name: "strapi::security",
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          "connect-src": ["'self'", "https:"],
+          "img-src": [
+            "'self'",
+            "data:",
+            "blob:",
+            "dl.airtable.com",
+            `https://${env("AWS_BUCKET")}.s3.${env("AWS_REGION")}.amazonaws.com/`,
+          ],
+          "media-src": [
+            "'self'",
+            "data:",
+            "blob:",
+            "dl.airtable.com",
+            `https://${env("AWS_BUCKET")}.s3.${env("AWS_REGION")}.amazonaws.com/`,
+          ],
+          upgradeInsecureRequests: null,
+        },
+      },
+    },
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',

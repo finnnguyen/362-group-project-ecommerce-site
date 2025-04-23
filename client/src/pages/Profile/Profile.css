@@ -1,0 +1,21 @@
+.greeting {
+    text-align: center;
+    margin: 100px auto 50px auto;
+    padding-block: 10px;
+    background: lightgray;
+    width: 70%;
+    border-radius: 10px;
+}
+.greeting h1 {
+    font-size: 2.5rem;
+}
+.greeting p {
+    font-size: 3rem;
+}
+.links {
+    text-align: center;
+}
+.links button {
+    margin-block: 10px 20px;
+    padding: 5px 20px;
+}

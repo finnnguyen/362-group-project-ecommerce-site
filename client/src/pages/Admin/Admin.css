@@ -1,0 +1,148 @@
+.admin-content {
+    text-align: center;
+}
+.admin-content button {
+    padding: 5px 40px;
+}
+
+.admin-form {
+    background: rgb(235, 235, 235);
+    width: 80%;
+    margin: auto;
+    padding-block: 20px;
+    margin-block: 10px 50px;
+    border-radius: 50px;
+}
+.admin-form fieldset {
+    display: grid;
+    grid-template-areas:    "title"
+                            "desc"
+                            "img"
+                            "cat"
+                            "subcat"
+                            "price"
+                            "type"
+                            "clr"
+                            "stock"
+                            "submit";
+    border: none;
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+}
+.admin-form fieldset *:not(h1) {
+    font-family: var(--body-font);
+}
+
+.admin-form fieldset legend {
+    margin-block: 20px;
+}
+.admin-form fieldset .form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.admin-form fieldset .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.admin-form fieldset .form-group label,
+.admin-form fieldset .form-group input[type="text"] {
+    display: flex;
+    width: 100%;
+}
+.admin-form fieldset input,
+.admin-form fieldset select {
+    padding: 10px 3px;
+}
+
+.admin-form fieldset .title {
+    grid-area: title;
+}
+.admin-form fieldset .description {
+    grid-area: desc;
+}
+.admin-form fieldset .img {
+    grid-area: img;
+}
+.admin-form fieldset .img input {
+    border: 2px dotted gray;
+    padding: 10px 5px;
+}
+.admin-form fieldset .price {
+    grid-area: price;
+    display: flex;
+    justify-self: flex-start;
+}
+.admin-form fieldset .categories,
+.admin-form fieldset .sub-categories {
+    grid-area: cat;
+}
+
+.admin-form fieldset .categories .items, 
+.admin-form fieldset .sub-categories .items {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 140px));
+    gap: 7px;
+}
+.admin-form fieldset .categories p, 
+.admin-form fieldset .sub-categories p {
+    grid-column: 1 / span 2;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.admin-form fieldset .categories input, .sub-categories input {
+    margin: 10px 5px;
+    width: 10% !important;
+}
+.admin-form fieldset .checkbox {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    user-select: none;
+    padding: 4px 12px;
+    gap: 8px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+.admin-form fieldset .checkbox:hover {
+    background: lightgray;
+}
+.admin-form fieldset .checkbox input[type="checkbox"] {
+    width: auto !important;
+    margin: 0;
+}
+
+.admin-form fieldset .checkbox label {
+    font-weight: normal;
+}
+.admin-form fieldset .sub-categories {
+    grid-area: subcat;
+}
+
+.admin-form fieldset .type {
+    grid-area: type;
+}
+.admin-form fieldset .color {
+    grid-area: clr;
+}
+.admin-form fieldset .stock {
+    grid-area: stock;
+}
+.admin-form fieldset .submit {
+    grid-area: submit;
+}
+
+
+@media screen and (min-width: 960px) {
+    .admin-form fieldset {
+        grid-template-areas:    "title title desc desc"
+                                "img img img img"
+                                "cat cat subcat subcat"
+                                "price type clr stock"
+                                ". submit submit .";
+    }
+}

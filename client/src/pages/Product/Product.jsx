@@ -29,6 +29,8 @@ export default function Product() {
     if (query) {
         var { products: [product], loading, error } = useFetch(query);
     }
+
+    console.log(product)
     
     return (
         <div>
@@ -49,7 +51,7 @@ export default function Product() {
                         <p>{product?.ratings?.length} Review(s)</p>
                     </a>
 
-                    <form action="" method="POST" ref={formRef} onSubmit={(e) => e.preventDefault()}>
+                    <form className="product-form" action="" method="POST" ref={formRef} onSubmit={(e) => e.preventDefault()}>
                         <select name="size" id="size" defaultValue={product?.sub_categories[0].title}>
                             {
                                 product?.sub_categories?.map(subcat =>

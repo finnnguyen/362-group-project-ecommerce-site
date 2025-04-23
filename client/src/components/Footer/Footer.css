@@ -39,14 +39,14 @@
 .subscribe {
     grid-area: subscribe;
 }
-input {
+.footer-form input {
     border: none;
     height: 25px;
     margin-right: 10px;
     margin-block: 5px;
     font-family: var(--body-text);
 }
-input[type="submit"] {
+.footer-form input[type="submit"] {
     cursor: pointer;
 }
 
