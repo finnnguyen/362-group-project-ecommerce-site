@@ -114,7 +114,7 @@ export default function NavBar() {
             {/*Mobile Navbar*/}
             <div className="mobile-nav">
                     <div className="links">
-                        <Link to="profile" className="profile">
+                        <Link to="profile" className="link profile">
                             <PersonOutlineIcon/>
                         </Link>
                         <div className="search">

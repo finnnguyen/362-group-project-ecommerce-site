@@ -29,6 +29,9 @@
     justify-content: right;
     flex: 0.8;
 }
+.desktop-nav .category.other * {
+    cursor: pointer;
+}
 
 .desktop-nav .category .arrow {
     vertical-align: middle;
