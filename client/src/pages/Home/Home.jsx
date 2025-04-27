@@ -25,9 +25,9 @@ export default function Home() {
     return (
         <div className="homepage">
             <Hero/>
-            <Trending/>  
             <CallToAction/>    
             <Testimonial/>
+            <Trending />
         </div>
     )
 }

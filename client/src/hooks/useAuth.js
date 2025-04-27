@@ -1,27 +1,39 @@
 import { useEffect, useState } from "react";
 import { makeRequest } from "../makeRequest";
 
-export const useAuth = (sessionId) => {
+const useAuth = () => {
+    const [authState, setAuthState] = useState({
+        user: null,
+        loading: false,
+        error: null
+    });
 
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const authUser = async (sessionId) => {
+        setAuthState(prev => ({ ...prev, loading: true, error: null }));
+        
+        try {
+            const response = await makeRequest.get("/users/me?populate=*", {
+                headers: {
+                    Authorization: `Bearer ${sessionId}`,
+                }
+            });
+            setAuthState({
+                user: response.data,
+                loading: false,
+                error: null
+            });
+            return response.data;
+        } catch (err) {
+            setAuthState({
+                user: null,
+                loading: false,
+                error: err.message || "Authentication failed"
+            });
+            throw err;
+        }
+    };
 
-    useEffect(() => {
-        setUser(null);
+    return { ...authState, authUser };
+};
 
-        setLoading(true);
-        makeRequest.get("/users/me?populate=*", {
-            headers: {
-                Authorization: `Bearer ${sessionId}`, 
-            }
-        })
-        .then(data => {
-            setUser(data.data);
-            setLoading(false);
-        })
-        .catch(err => setError(err));
-    }, [sessionId]);
-
-    return { user, loading, error };
-}
+export default useAuth;

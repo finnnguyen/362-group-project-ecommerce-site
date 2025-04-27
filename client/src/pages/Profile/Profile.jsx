@@ -2,26 +2,40 @@ import "./Profile.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useAuth } from "../../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 
 export default function Profile() {
     const sessionId = Cookies.get("sessionId");
-
     const navigate = useNavigate();
-    if (!sessionId) navigate("/login");
+    const { user, loading, error, authUser } = useAuth();
+    const [localUser, setLocalUser] = useState(null);
 
-    function fetchUserData() {
-        let user = JSON.parse(localStorage.getItem("data"));
+    useEffect(() => {
+        if (!sessionId) {
+            navigate("/login");
+            return;
+        }
 
-        if (user == null) {
-            let { user, loading, error } = useAuth(sessionId);
-            localStorage.setItem("data", JSON.stringify(user));
-            return user;
-        } 
-        return user;
-    }
+        const loadUserData = async () => {
+            try {
+                // Check localStorage first
+                const cachedUser = JSON.parse(localStorage.getItem("data"));
+                if (cachedUser) {
+                    setLocalUser(cachedUser);
+                    return;
+                }
 
-    const user = fetchUserData();
+                // Fetch fresh data if not in cache
+                const freshUser = await authUser(sessionId);
+                localStorage.setItem("data", JSON.stringify(freshUser));
+            } catch (err) {
+                console.error("Failed to load user data:", err);
+                handleLogOut();
+            }
+        };
+
+        loadUserData();
+    }, [sessionId, navigate, authUser]);
 
     function handleLogOut() {
         Cookies.remove("sessionId");
@@ -29,21 +43,31 @@ export default function Profile() {
         navigate("/login");
     }
 
+    // Determine which user data to display
+    const displayUser = localUser || user;
+
+    if (loading && !displayUser) return <div className="loading">Loading profile...</div>;
+    if (error) return <div className="error">Error: {error}</div>;
+    if (!displayUser) return <div className="error">No user data found</div>;
+
     return (
-        <div>
+        <div className="profile-container">
             <div className="greeting">
-                <h1>Hello</h1>
-                <p>{user?.name}</p>
+                <h1>Hello, {displayUser?.username || displayUser?.email}</h1>
             </div>
-            <div className="links">
-                <button onClick={handleLogOut}><p>Log out</p></button>
-                {
-                    user?.role?.type === 'authenticated' &&
-                    <div>
-                        <button onClick={() => { navigate("admin") }}><p>Admin</p></button>
-                    </div>
-                }
+            <div className="profile-links">
+                <button onClick={handleLogOut} className="logout-btn">
+                    Log out
+                </button>
+                {displayUser?.role?.type === 'authenticated' && (
+                    <button 
+                        onClick={() => navigate("/admin")} 
+                        className="admin-btn"
+                    >
+                        Admin Dashboard
+                    </button>
+                )}
             </div>
         </div>
-    )
+    );
 }

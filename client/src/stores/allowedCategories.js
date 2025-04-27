@@ -1,18 +1,12 @@
-import { useFetch } from "../hooks/useFetch";
-
-export function isValidProduct(category, subcategory=null) {
-    
-    if (allowedCategories[category] && !subcategory || 
-        allowedCategories[category] && allowedCategories[category].includes(subcategory)
-    ) {
-        return true;
-    }
-    return false;
-}
-
-
 export const allowedCategories = {
-    "neckties": ["classic", "skinny", "wide", "clip-on", "kids"], 
-    "bowties": ["pre-tied", "self-tie", "kids"], 
+    "neckties": ["classic", "skinny", "wide", "clip-on", "kids"],
+    "bowties": ["pre-tied", "self-tie", "kids"],
     "accessories": ["tie-clips", "scarves", "tie-care"]
-};
+  };
+  
+  export function isValidProduct(category, subcategory = null) {
+    return (
+      (allowedCategories[category] && !subcategory) ||
+      (allowedCategories[category] && allowedCategories[category].includes(subcategory))
+    );
+  }

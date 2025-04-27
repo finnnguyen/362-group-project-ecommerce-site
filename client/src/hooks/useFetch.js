@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react";
 import { makeRequest } from "../makeRequest";
 
-export const useFetch = (url) => {
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-    const [products, setProducts] = useState([]);
-    const [filters, setFilters] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        setProducts([]);
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
         setLoading(true);
-        makeRequest.get(url)
-        .then(data => {
-            setProducts(data.data.data);
-            setLoading(false);
-        })
-        .catch(err => setError(err));
-    }, [url]);
+        const res = await makeRequest.get(url);
+        setData(res.data.data);
+      } catch (err) {
+        setError(true);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, [url]);
 
-    return { products, loading, error };
-}
+  return { data, loading, error };
+};
+
+export default useFetch;
